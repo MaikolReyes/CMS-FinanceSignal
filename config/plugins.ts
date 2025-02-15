@@ -1,8 +1,28 @@
-export default {
+
+module.exports = ({ env }) => ({
     'users-permissions': {
         config: {
-            jwtSecret: process.env.ADMIN_JWT_SECRET || 'default-secret',  // Asegúrate de que lea desde el archivo .env
+            jwtSecret: env('ADMIN_JWT_SECRET'),  // Asegúrate de que lea desde el archivo .env
         },
     },
-};
+    upload: {
+        config: {
+            provider: 'aws-s3',
+            providerOptions: {
+                accessKeyId: env('AWS_ACCESS_KEY_ID'),
+                secretAccessKey: env('AWS_ACCESS_SECRET'),
+                region: env('AWS_REGION'),
+                params: {
+                    Bucket: env('AWS_BUCKET'),
+                },
+            },
+            actionOptions: {
+                upload: {},
+                uploadStream: {},
+                delete: {},
+            },
+        },
+    },
+});
+
 
