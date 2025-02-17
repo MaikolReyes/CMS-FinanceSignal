@@ -1,7 +1,6 @@
 export default [
   'strapi::logger',
   'strapi::errors',
-  'strapi::errors',
   {
     name: 'strapi::security',
     config: {
