@@ -1,20 +1,29 @@
-// import type { Core } from '@strapi/strapi';
-
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register() { },
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  bootstrap({ strapi }) {
+    setInterval(async () => {
+      const now = new Date();
+
+      // Buscar artículos en borrador con scheduledAt ya pasado
+      const articles = await strapi.entityService.findMany('api::article.article', {
+        filters: {
+          publishedAt: null,
+          scheduledAt: { $lte: now },
+        },
+        limit: 100,
+      });
+
+      for (const article of articles) {
+        await strapi.entityService.update('api::article.article', article.id, {
+          data: {
+            publishedAt: new Date(),
+          },
+        });
+
+        strapi.log.info(`✅ Publicado automáticamente: ${article.title}`);
+      }
+    }, 60 * 1000); // cada 1 minuto
+  },
 };
+
