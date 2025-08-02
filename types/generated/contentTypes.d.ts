@@ -449,6 +449,12 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'api::article.article'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    resumen: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     scheduledAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{

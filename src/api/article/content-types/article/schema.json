@@ -84,6 +84,14 @@
     },
     "scheduledAt": {
       "type": "datetime"
+    },
+    "resumen": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
