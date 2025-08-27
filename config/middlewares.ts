@@ -31,7 +31,7 @@ export default [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['http://localhost:5173'], // Permitir localhost
+      origin: ['http://localhost:5173','http://localhost:3000'], // Permitir localhost
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
     },
