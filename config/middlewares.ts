@@ -14,6 +14,7 @@ export default [
             'blob:',
             'dl.airtable.com',
             `${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`,
+            'd1gbtbhodg3cj1.cloudfront.net', // 👈 añadís CloudFront
           ],
           'media-src': [
             "'self'",
@@ -21,6 +22,7 @@ export default [
             'blob:',
             'dl.airtable.com',
             `${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`,
+            'd1gbtbhodg3cj1.cloudfront.net', // 👈 añadís CloudFront
           ],
           upgradeInsecureRequests: null,
         },
@@ -31,8 +33,8 @@ export default [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['http://localhost:5173','http://localhost:3000'], // Permitir localhost
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+      origin: ['http://localhost:5173', 'http://localhost:3000'], // Permitir localhost
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
     },
   },

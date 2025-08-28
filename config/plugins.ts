@@ -18,14 +18,15 @@ module.exports = ({ env }) => ({
             },
             actionOptions: {
                 upload: {
-                    ACL: null
+                    ACL: null,
                 },
                 uploadStream: {
-                    ACL: null
+                    ACL: null,
                 },
-            }
+            },
+            // 👇 Esto es lo más importante
+            baseUrl: env('CDN_URL', `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`),
         },
-    }
+    },
 });
-
 
